@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'home.dart'; // Import the MyHomePage widget from home.dart
-import 'login.dart'; // Import the LoginPage widget from login_page.dart
+import 'login.dart'; 
+import 'supplier_page.dart';
+import 'records_page.dart';
+import 'settings.dart';
+// Import the LoginPage widget from login_page.dart
 
 void main() {
   runApp(MyApp());
@@ -20,7 +24,11 @@ class MyApp extends StatelessWidget {
       routes: {
         '/login': (context) => LoginPage(),
         '/home': (context) => MyHomePage(),
+        '/suppliers': (context) => SuppliersPage(),
+        '/records': (context) => RecordsPage(),
+        '/settings': (context) => SettingsPage(),
       },
+
     );
   }
 }

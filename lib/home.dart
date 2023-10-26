@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:req/login.dart';
 import 'requisition_form.dart'; // Import the requisition form screen
-import 'profile_screen.dart'; // Import the profile screen
+import 'profile_screen.dart';
+import 'supplier_page.dart';
+import 'records_page.dart';
+import 'settings.dart';
+// Import the profile screen
 
 class MyHomePage extends StatefulWidget {
   @override
@@ -15,8 +20,8 @@ class _MyHomePageState extends State<MyHomePage> {
     Center(
       child: Text('Your Home Content Goes Here'),
     ),
-    RequisitionFormScreen(),
-    ProfileScreen(),
+    RequisitionFormScreen(), // Use Requisition page
+    ProfileScreen(), // Use Profile page
   ];
 
   @override
@@ -68,10 +73,10 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                   Center(
                     child: CircleAvatar(
-                      radius: 50,
+                      radius: 40,
                       child: Image.asset(
                         'assets/logo-no-background.png', // Replace this with your logo image asset
-                        height: 90, // Set the height of the logo inside the circular avatar
+                        height: 80, // Set the height of the logo inside the circular avatar
                       ),
                     ),
                   ),
@@ -81,37 +86,66 @@ class _MyHomePageState extends State<MyHomePage> {
             ListTile(
               title: Text('Dashboard'),
               onTap: () {
-                // Set the current page to the home page
                 setState(() {
                   _currentIndex = 0;
                 });
-                Navigator.pop(context); // Close the drawer
+                Navigator.pop(context);
               },
             ),
             ListTile(
-              title: Text('Add'),
+              title: Text('Add Requisition'),
               onTap: () {
-                // Set the current page to the Requisition Form
                 setState(() {
                   _currentIndex = 1;
                 });
-                Navigator.pop(context); // Close the drawer
+                Navigator.pop(context);
               },
             ),
             ListTile(
               title: Text('Profile'),
               onTap: () {
-                // Set the current page to the Profile screen
                 setState(() {
                   _currentIndex = 2;
                 });
-                Navigator.pop(context); // Close the drawer
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              title: Text('Suppliers'),
+              onTap: () {
+                // Navigate to Suppliers page
+                Navigator.push(context, MaterialPageRoute(builder: (context) => SuppliersPage()));
+              },
+            ),
+            ListTile(
+              title: Text('Records'),
+              onTap: () {
+                // Navigate to Records page
+                Navigator.push(context, MaterialPageRoute(builder: (context) => RecordsPage()));
+              },
+            ),
+            ListTile(
+              title: Text('Settings'),
+              onTap: () {
+                // Navigate to Settings page
+                Navigator.push(context, MaterialPageRoute(builder: (context) => SettingsPage()));
+              },
+            ),
+            ListTile(
+              title: Text('Log Out'),
+              onTap: () {
+                // Navigate to Logout page
+                Navigator.push(context, MaterialPageRoute(builder: (context) => LoginPage()));
               },
             ),
           ],
         ),
       ),
-      body: _pages[_currentIndex],
+      body: _currentIndex >= 0 && _currentIndex < _pages.length
+          ? _pages[_currentIndex]
+          : Center(
+              child: Text('Invalid Page Index'),
+            ),
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: Colors.grey,
         currentIndex: _currentIndex,
